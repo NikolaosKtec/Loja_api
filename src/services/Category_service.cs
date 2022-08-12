@@ -1,0 +1,76 @@
+using loja_api.dataBases.config_context;
+using loja_api.domain;
+using loja_api.domain.dto;
+
+
+namespace src.services;
+
+//  partial interface IContext_service
+// {
+//     public abstract void Save(Categoria param);
+//     public abstract Categoria Get(int param);
+//     public abstract void Update(Categoria param);
+//     public abstract int Delete(int param);
+// }
+class Category_service //: IContext_service
+{
+   public Category_service(Context_app context)=>  Context = context;
+
+   private readonly Context_app Context;
+
+    public int Safe_delete(Categoria categoria)//todo verificar metodo
+    {
+        categoria.is_active = false;
+        Update(categoria);
+     
+        List<Produto> produtos = Context.Produto.Where(p => p.Categoria.Id == categoria.Id).ToList();
+     
+        produtos.ForEach(p => p.is_active=false);
+         
+            
+        Context.Update(produtos);
+        Context.SaveChanges();
+        return 1;
+    }
+    public int Delete(int param)
+    {
+        Categoria categoria = Get(param);
+
+        if(categoria is null)
+            return 0;
+        else{
+            Context.Categoria.Remove(categoria);
+            Context.SaveChanges();
+            return 1;
+        }
+    }
+
+    
+
+    public Categoria Get(int param)
+    {
+        return Context.Categoria.Find(param);
+    }
+
+    public IQueryable<CategoriaDto> GetAll()
+    {
+
+       return Context.Categoria.Select(c => new CategoriaDto
+           {Active = c.is_active, Id = c.Id, Name = c.Name});
+         
+    }
+    
+    
+
+    public void Save(Categoria param)
+    {
+        Context.Categoria.Add(param);
+        Context.SaveChanges();
+    }
+
+    public void Update(Categoria param)
+    {
+       Context.Categoria.Update(param);
+       Context.SaveChanges();
+    }
+}
