@@ -12,10 +12,8 @@ namespace loja_api.endPoints.categoria;
     public static IResult Action(CategoriaDto categoriaDto,Category_service service)
     {
 
-        Categoria categoria = new Categoria(categoriaDto.Name)
-        {
-            is_active = categoriaDto.Active
-        };
+        Categoria categoria = new Categoria(categoriaDto.Name);
+        
         
        if(!categoria.IsValid){//todo validação correta
            
@@ -23,7 +21,7 @@ namespace loja_api.endPoints.categoria;
        }
 
         service.Save(categoria);
-        return Results.Created("ok",(categoriaDto.Name, categoriaDto.Active));
+        return Results.Created("ok",(categoriaDto.Name, categoriaDto.is_active));
     }
     
 }

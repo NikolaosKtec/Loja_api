@@ -14,20 +14,21 @@ namespace loja_api.endPoints.categoria;
     static IResult Action([FromRoute]int id,CategoriaDto categoriaDto,Category_service service)
     {
         Categoria categoria =  service.Get(id);
-
-        if(categoria is null){
-            return Results.NoContent();
-        }
         
-        categoria.Name = categoriaDto.Name;
+        
+        if(categoria is null)
+        {
+            return Results.NoContent();
+        } 
+        categoria.edit(categoriaDto.Name,categoriaDto.is_active);
+        
         if (!categoria.IsValid)
         {
-            return Results.ValidationProblem(Generic_errors.show_errors(categoria));
+                return Results.ValidationProblem(Generic_errors.show_errors(categoria));
         }
         
         service.Update(categoria);
-        return Results.Accepted("ok",(categoriaDto.Name, categoriaDto.Active));
-        
+        return Results.Accepted("ok",(categoriaDto.Name, categoriaDto.is_active));
     }
 }
 

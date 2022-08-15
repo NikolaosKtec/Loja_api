@@ -1,3 +1,4 @@
+using System.Security.AccessControl;
 using Flunt.Notifications;
 using loja_api.domain;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,16 @@ namespace loja_api.dataBases.config_context;
         Configuration = configuration;
     }
     
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-       // base.OnModelCreating(modelBuilder);
-       modelBuilder.Ignore<Notification>();
+    
+    modelBuilder.Ignore<Notification>();
+    modelBuilder.Entity<Produto>()
+        .HasOne<Categoria>()
+        .WithOne()
+        .HasForeignKey<Produto>(p => p.CategoriaId)
+        .OnDelete(deleteBehavior: DeleteBehavior.SetNull);
+        //todo aparentemente deu certo 
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)

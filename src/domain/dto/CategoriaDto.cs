@@ -5,7 +5,7 @@ namespace loja_api.domain.dto;
     {
         public string Name { get; set; }
 
-        public bool Active { get; set; }
+        public bool is_active { get; set; }
         
         public int? Id { get; set; }
         

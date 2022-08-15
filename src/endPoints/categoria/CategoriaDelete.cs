@@ -16,9 +16,11 @@ class CategoriaDelete
         if(categoria is null){
             return Results.NoContent();
         }
-
+        //todo gatilho pode ser útil aqui
+        categoria.set_active(false);
+        service.Update(categoria);
         
-        service.Safe_delete(categoria);// todo aparenemente feito
+        service.inactivate_childs(categoria);// todo aparenemente feito
         return Results.Ok("Este agora encontra-se Inativo!");
     }
 }

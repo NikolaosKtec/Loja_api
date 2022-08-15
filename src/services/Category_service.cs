@@ -18,31 +18,31 @@ class Category_service //: IContext_service
 
    private readonly Context_app Context;
 
-    public int Safe_delete(Categoria categoria)//todo verificar metodo
+    public int inactivate_childs(Categoria categoria)//todo verificar metodo
     {
-        categoria.is_active = false;
-        Update(categoria);
-     
-        List<Produto> produtos = Context.Produto.Where(p => p.Categoria.Id == categoria.Id).ToList();
-     
-        produtos.ForEach(p => p.is_active=false);
-         
-            
-        Context.Update(produtos);
-        Context.SaveChanges();
+       
+        //
+        //
+        // List<Produto> produtos = Context.Produto.Where(p => p.Categoria.Id == categoria.Id).ToList();
+        //
+        // produtos.ForEach(p => p.set_isActive(false));
+        //  
+        //     
+        // Context.Update(produtos);
+        // Context.SaveChanges();
         return 1;
     }
-    public int Delete(int param)
+    public int Delete(int param)//todo verificar metodo
     {
         Categoria categoria = Get(param);
 
         if(categoria is null)
             return 0;
-        else{
-            Context.Categoria.Remove(categoria);
-            Context.SaveChanges();
-            return 1;
-        }
+        
+        
+        Context.Categoria.Remove(categoria);
+        Context.SaveChanges();
+        return 1;
     }
 
     
@@ -56,7 +56,10 @@ class Category_service //: IContext_service
     {
 
        return Context.Categoria.Select(c => new CategoriaDto
-           {Active = c.is_active, Id = c.Id, Name = c.Name});
+       {
+           is_active = c.is_active, Id = c.Id, Name = c.Name
+           
+       });
          
     }
     
