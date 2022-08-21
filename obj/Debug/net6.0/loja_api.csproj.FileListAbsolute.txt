@@ -34,3 +34,8 @@ C:\Users\Nikolaos\dot_net_projects\loja_api\bin\Debug\net6.0\Microsoft.Extension
 C:\Users\Nikolaos\dot_net_projects\loja_api\bin\Debug\net6.0\Npgsql.dll
 C:\Users\Nikolaos\dot_net_projects\loja_api\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Nikolaos\dot_net_projects\loja_api\bin\Debug\net6.0\Flunt.dll
+C:\Users\Nikolaos\dot_net_projects\loja_api\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Nikolaos\dot_net_projects\loja_api\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Nikolaos\dot_net_projects\loja_api\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Nikolaos\dot_net_projects\loja_api\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Nikolaos\dot_net_projects\loja_api\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll

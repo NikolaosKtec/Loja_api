@@ -24,7 +24,7 @@ namespace loja_api.endPoints.categoria;
         
         if (!categoria.IsValid)
         {
-                return Results.ValidationProblem(Generic_errors.show_errors(categoria));
+                return Results.ValidationProblem(categoria.show_errors_category());
         }
         
         service.Update(categoria);

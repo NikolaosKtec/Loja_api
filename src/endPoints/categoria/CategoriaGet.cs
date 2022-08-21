@@ -11,7 +11,7 @@ class CategoriaGet
     {
         
         var results = service.GetAll();
-
-        return Results.Ok(results);
+        
+       return Results.Ok(results);
     }
 }

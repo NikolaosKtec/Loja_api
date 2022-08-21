@@ -1,4 +1,4 @@
-using loja_api.dataBases.config_context;
+using loja_api.config_context;
 using loja_api.domain;
 using loja_api.domain.dto;
 

@@ -1,10 +1,12 @@
 using System.Security.AccessControl;
 using Flunt.Notifications;
 using loja_api.domain;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace loja_api.dataBases.config_context;
- class Context_app : DbContext{
+namespace loja_api.config_context;
+ class Context_app : IdentityDbContext<IdentityUser>{
      
      public DbSet<Produto> Produto{get;set;}
      public DbSet<Categoria> Categoria{get;set;}
@@ -18,7 +20,7 @@ namespace loja_api.dataBases.config_context;
     
      protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-    
+    base.OnModelCreating(modelBuilder);
     modelBuilder.Ignore<Notification>();
     modelBuilder.Entity<Produto>()
         .HasOne<Categoria>()
@@ -30,9 +32,12 @@ namespace loja_api.dataBases.config_context;
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        // connect to postgres with connection string from app settings
-        options.UseNpgsql(Configuration.GetConnectionString("PostgreSql"));
+        
+        
+        options.UseNpgsql(Environment
+            .GetEnvironmentVariable(Configuration.GetConnectionString("PostgreSql")));
         options.UseNpgsql().EnableSensitiveDataLogging();
+        
         
         
     }
