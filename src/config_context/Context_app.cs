@@ -29,7 +29,11 @@ namespace loja_api.config_context;
         .OnDelete(deleteBehavior: DeleteBehavior.SetNull);
         //todo aparentemente deu certo 
     }
-
+    // protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    // {
+    //     base.ConfigureConventions(configurationBuilder);
+    //     configurationBuilder.
+    // }
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         

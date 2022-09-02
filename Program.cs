@@ -1,6 +1,7 @@
 using loja_api.config_context;
 using loja_api.endPoints.categoria;
 using loja_api.endPoints.Employes;
+using loja_api.services;
 using loja_api.src.endPoints.categoria;
 using Microsoft.AspNetCore.Identity;
 using src.services;
@@ -14,7 +15,7 @@ builder.Services.AddDbContext<Context_app>()
         options.Password.RequireNonAlphanumeric = false;
     })
     .AddEntityFrameworkStores<Context_app>();
-builder.Services.AddScoped<Category_service>().AddScoped<Produtc_service>();
+builder.Services.AddScoped<Category_service>().AddScoped<Produtc_service>().AddScoped<User_service>();
 
 var app = builder.Build();
 
